@@ -1,0 +1,266 @@
+﻿
+using Cloud_Custom.Api.Infrastructure.ISecurity;
+using Microsoft.Extensions.DependencyInjection;
+using Cloud_Custom.Api.Infrastructure.Security;
+using Cloud_Custom.Api.Repository.IRepository;
+using Cloud_Custom.Api.Repository.IRepository.Account;
+using Cloud_Custom.Api.Repository.IRepository.General;
+using Cloud_Custom.Api.Repository.IRepository.Custom;
+
+using Cloud_Custom.Api.Repository.Repository;
+using Cloud_Custom.Api.Repository.Repository.Account;
+using Cloud_Custom.Api.Repository.Repository.General;
+using Cloud_Custom.Api.Repository.Repository.Custom;
+using Cloud_Custom.Api.Repository.IRepository.MobileApp;
+using Cloud_Custom.Api.Repository.Repository.MobileApp;
+using Cloud_Custom.Api.Infrastructure.Helpers;
+using Cloud_Custom.Api.Repository.Repository.Custom.Cloud_Custom.Api.Repository.Repository.Custom;
+using Cloud_Custom.Api.Repository.Repository.Custom.Reports;
+
+namespace SAMPLE_API_PLUS
+{
+    public static class AppDependencyInjection
+    {
+        public static void AddDependencyInjectionServices(this IServiceCollection services)
+        {
+            #region General
+            services.AddTransient<ISqlConnectionProvider, SqlConnectionProvider>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ICommonRepository, CommonRepository>();
+            services.AddTransient<IDropdownRepository, DropdownRepository>();
+            services.AddTransient<IMenuRepository, MenuRepository>();
+            services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<IHash, Hash>();
+            services.AddScoped<IBlob, Blob>();
+            #endregion
+        
+            #region Account
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPasswordSettingsRepository, PasswordSettingsRepository>();
+            #endregion
+
+            #region Custom
+            services.AddTransient<IServiceTargetIncentiveParameterRepository, ServiceTargetIncentiveParameterRepository>();
+            services.AddTransient<ILateHourConfirmationRepository, LateHourConfirmationRepository>();
+            services.AddTransient<IDMSSALESFILEDOWNLOADRepository, DMSSALESFILEDOWNLOADRepository>();
+            services.AddTransient<ISalesUpdateRepository, SalesUpdateRepository>();
+            services.AddTransient<IDearlerShipRepository, DearlerShipRepository>();
+            services.AddTransient<ICarModelRepository, CarModelRepository>();
+            services.AddTransient<IStoreOrBranchRepository, StoreOrBranchRepository>();
+            services.AddTransient<ISalesPositionRepository, SalesPositionRepository>();
+            services.AddTransient<ISalesEmpRepository, SalesEmpRepository>();
+            services.AddTransient<IDSEvsTLRepository, DSEvsTLRepository>();
+            services.AddTransient<ITLvsSTRepository, TLvsSTRepository>();
+            services.AddTransient<IMonthRepository, MonthRepository>();
+            services.AddTransient<ISalesTargetRepository, SalesTargetRepository>();
+            services.AddTransient<IDMSSalesMisRepository, DMSSalesMisRepository>();
+            services.AddTransient<ISalesIncentiveSettingsRepository, SalesIncentiveSettingsRepository>();
+            services.AddTransient<IEWIncentiveSettingsRepository, EWIncentiveSettingsRepository>();
+            services.AddTransient<IAllAdminFormsRepository, AllAdminFormsRepository>();
+            services.AddTransient<IGASIncentiveSettingsRepository, GASIncentiveSettingsRepository>();
+            services.AddTransient<IInsurIncentiveSettingRepository, InsurIncentiveSettingRepository>();
+            services.AddTransient<IFinanceIncentiveSettingRepository, FinanceIncentiveSettingRepository>();
+            services.AddTransient<IExchangeIncentiveSettingRepository, ExchangeIncentiveSettingRepository>();
+            services.AddTransient<IMcpIncentiveSettingRepository, McpIncentiveSettingRepository>();
+            services.AddTransient<IIncentiveProcessingRepository, IncentiveProcessingRepository>();
+            services.AddTransient<IIncentiveSummaryRepository, IncentiveSummaryRepository>();
+            services.AddTransient<IOrderBookingRepository, OrderBookingRepository>();
+            services.AddTransient<IOrderUpdateRepository, OrderUpdateRepository>();
+            services.AddTransient<IColdCallRepository, ColdCallRepository>();
+            services.AddTransient<IColdCallEnquireRepository, ColdCallEnquireRepository>();
+            services.AddTransient<IColdFollowUPRepository, ColdFollowUPRepository>();
+            services.AddTransient<IIncentiveProcessingApprovalRepository, IncentiveProcessingApprovalRepository>();
+            services.AddTransient<IColdCallEnquireReportRepository, ColdCallEnquireReportRepository>();
+            services.AddTransient<IColdFollowUpReportRepository, ColdFollowUpReportRepository>();
+            services.AddTransient<IOrderRegisterRepository, OrderRegisterRepository>();
+            services.AddTransient<ISalesProgressReportRepository, SalesProgressReportRepository>();
+            services.AddTransient<ISpotIncentiveDateWiseRepository, SpotIncentiveDateWiseRepository>();
+            services.AddTransient<ITestDriveRepository, TestDriveRepository>();
+            services.AddTransient<ITestDriveApprovalRepository, TestDriveApprovalRepository>();
+            services.AddTransient<ITestDriveScheduleRepository, TestDriveScheduleRepository>();
+            services.AddTransient<ITestDriveCompletedRepository, TestDriveCompletedRepository>();
+            services.AddTransient<IAppointmentRepository, AppointmentRepository>();
+            services.AddTransient<IMobileRepository, MobileRepository>();
+            services.AddTransient<ISpotIncentiveModelWiseRepository, SpotIncentiveModelWiseRepository>();
+            services.AddTransient<IInventoryDispatchUpdateRepository, InventoryDispatchUpdateRepository>();
+            services.AddTransient<IFuelTypeRepository, FuelTypeRepository>();
+            services.AddTransient<ITransmissionTypeRepository, TransmissionTypeRepository>();
+            services.AddTransient<IWareHouseRepository, WareHouseRepository>();
+            services.AddTransient<IWorkShopRepository, WorkShopRepository>();
+            services.AddTransient<IQcRepository, QcRepository>();
+            services.AddTransient<IVariantRepository, VariantRepository>();
+            services.AddTransient<IColorRepository, ColorRepository>();
+            services.AddTransient<IServiceAgeingSummeryRepository, ServiceAgeingSummeryRepository>();
+            services.AddTransient<ILabourRepository, LabourRepository>();
+            services.AddTransient<IServiceMstRepository, ServiceMstRepository>();
+            services.AddTransient<ILeadReassignRepository, LeadReassignRepository>();
+            services.AddTransient<ILeadVSPurchaseTimeLineRepository, LeadVSPurchaseTimeLineRepository>();
+            services.AddTransient<IAllotmentRepository, AllotmentRepository>();
+            services.AddTransient<ICustomerAccountRepository, CustomerAccountRepository>();
+            services.AddTransient<ICustomerDocRepository, CustomerDocRepository>();
+            services.AddTransient<IRegistrationRepository, RegistrationRepository>();
+            services.AddTransient<IInvoiceGenerationForVechicleRepository, InvoiceGenerationForVechicleRepository>();
+            services.AddTransient<IRegistrationVerificationRepository, RegistrationVerificationRepository>();
+            services.AddTransient<ILeadStatusRepository, LeadStatusRepository>();
+            services.AddTransient<IPriceSettingsRepository, PriceSettingsRepository>();
+            services.AddTransient<IRegionRepository, RegionRepository>();
+            services.AddTransient<IAddLeadRepository, AddLeadRepository>();
+            services.AddTransient<IStockAgeingSummaryRepository, StockAgeingSummaryRepository>();
+            services.AddTransient<IEmployeePerCarRepository, EmployeePerCarRepository>();
+            services.AddTransient<IPriceDetailsRepository, PriceDetailsRepository>();
+            services.AddTransient<IRegistrationFinalSubmitRepository, RegistrationFinalSubmitRepository>();
+            services.AddTransient<IRTODetailsRepository, RTODetailsRepository>();
+            services.AddTransient<IPerCarProfitRepository, PerCarProfitRepository>();
+            services.AddTransient<IVehicleDeliveryRepository, VehicleDeliveryRepository>();
+            services.AddTransient<IVehicleOrderStatusRepository, VehicleOrderStatusRepository>();
+            services.AddTransient<IModelvsVariantRepository, ModelvsVariantRepository>();
+            //services.AddTransient<IWorkshopFileUploadRepository, WorkshopFileUploadRepository>();
+            services.AddTransient<IWorkshopFileReportRepository, WorkshopFileReportRepository>();
+            services.AddTransient<IFirstServiceCallRepository, FirstServiceCallRepository>();
+            services.AddTransient<IServiceRepository, ServiceRepository>();
+            services.AddTransient<IServiceAccessoriesRepository, ServiceAccessoriesRepository>();
+            services.AddTransient<IMonthlyRevenueAndDeliveryRepository, MonthlyRevenueAndDeliveryRepository>();
+            services.AddTransient<IFrequentServiceCustomerRepository, FrequentServiceCustomerRepository>();
+            services.AddTransient<IServiceIncentiveSlabSettingsRepository, ServiceIncentiveSlabSettingsReposiitory>();
+            services.AddTransient<IDesignationVsParameterRepository, DesignationVsParameterRepository>();
+            services.AddTransient<IServiceAchievedRepository, ServiceAchievedRepository>();
+            services.AddTransient<IServiceAppointmentRepository, ServiceAppointmentRepository>();
+            services.AddTransient<IBookedAppointmentRepository, BookedAppointmentRepository>();
+            services.AddTransient<IVechicleEntryRepository, VechicleEntryRepository>();
+            services.AddTransient<IIncentiveGroupVsDesignationRepository, IncentiveGroupVsDesignationRepository>();
+            services.AddTransient<IUserRoleRepository, UserRoleRepository>();
+            services.AddTransient<IVechicleInspectionRepository, VechicleInspectionRepository>();
+            services.AddTransient<IServiceTargetIncentiveRepository, ServiceTargetIncentiveRepository>();
+            services.AddTransient<IServiceIncentiveSettingsRepository, ServiceIncentiveSettingsRepository>();
+            services.AddTransient<IServiceIncentiveRepository, ServiceIncentiveRepository>();
+            services.AddTransient<IServiceTargetvsAchivementRepository, ServiceTargetvsAchivementRepository>();
+            services.AddHttpClient<IWorkshopFileUploadRepository, WorkshopFileUploadRepository>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<ICustomerServiceDetailsRepository, CustomerServiceDetailsRepository>();
+            services.AddHttpClient<IWorkShopUploadRepository, WorkShopUploadRepository>();
+            services.AddTransient<IIncentiveRepository, IncentiveRepository>();
+            services.AddTransient<IBayRepository, BayRepository>();
+            services.AddTransient<IBayMovementIdleRepository, BayMovementIdleRepository>();
+            services.AddTransient<IWorkshopVsBayRepository, WorkshopVsBayRepository>();
+            services.AddHttpClient<IJobCardDetailsAIRepository, JobCardDetailsAIRepository>();
+            services.AddTransient<IServiceOilRepository, ServiceOilRepository>();
+            services.AddTransient<IVehicleGateRepository, VehicleGateRepository>();
+            services.AddTransient<ISeviceAchivementvsTargetRepository, SeviceAchivementvsTargetRepository>();
+            services.AddTransient<IServiceIncentiveSettingsGroupWiseRepository, ServiceIncentiveSettingsGroupWiseRepository>();
+            services.AddTransient<IServiceParameterListRepository, ServiceParameterListRepository>();
+            services.AddTransient<IDailyServiceBookingReportRepository, DailyServiceBookingReportRepository>();
+            services.AddTransient<IPendingPickupRepository, PendingPickupRepository>();
+            services.AddTransient<IIncentiveTargetTeamSettingsRepository, IncentiveTargetTeamSettingsRepository>();
+            services.AddTransient<IEnterpriseDashboardRepository, EnterpriseDashboardRepository>();
+            services.AddTransient<ITodaysVehiclePickupReportRepository, TodaysVehiclePickupReportRepository>();
+            services.AddTransient<IIncentiveTargetBranchSettingsRepository, IncentiveTargetBranchSettingsRepository>();
+            services.AddTransient<IBayUtilizationReportRepository, BayUtilizationReportRepository>();
+            services.AddTransient<INonServiceVehicleRepository, NonServiceVehicleRepository>();
+            services.AddTransient<IBayManagementRepository, BayManagementRepository>();
+            services.AddTransient<ITechnicianEfficiencyRepository, TechnicianEfficiencyRepository>();
+            services.AddTransient<IAssignDriverRepository, AssignDriverRepository>();
+            services.AddTransient<IIncentiveTargetRegionSettingsRepository, IncentiveTargetRegionSettingsRepository>();
+            services.AddTransient<IJobCardTrackingReportRepository, JobCardTrackingReportRepository>();
+            services.AddTransient<IBayServiceSummaryRepository, BayServiceSummaryRepository>();
+            services.AddTransient<IEmployeeVSTargetReportRepository, EmployeeVSTargetReportRepository>();
+            services.AddTransient<IProfitMarginRepository, ProfitMarginRepository>();
+            services.AddTransient<IServiceAchivementAdjustmentRepository, ServiceAchivementAdjustmentRepository>();
+            services.AddTransient<IOutSourceWorkRepository, OutSourceWorkRepository>();
+            services.AddTransient<IInsuranceCompanyRepository, InsuranceCompanyRepository>();
+            services.AddTransient<IFinanceRepository, FinanceRepository>();
+            services.AddTransient<ILeadEnquiryUploadRepository, LeadEnquiryUploadRepository>();
+            services.AddTransient<IOrderBookingUploadRepository, OrderBookingUploadRepository>();
+            services.AddTransient<IServiceIncentiveReportRepository, ServiceIncentiveReportRepository>();
+            services.AddTransient<IBranchWiseIncentiveRepository, BranchWiseIncentiveRepository>();
+            services.AddTransient<IMCareServicesRepository, MCareServicesRepository>();
+            services.AddTransient<IServicePreprocessingRepository, ServicePreprocessingRepository>();
+            services.AddTransient<IBayMovementIdleRepository, BayMovementIdleRepository>();
+            services.AddTransient<IMCareExpiryReportRepository, MCareExpiryReportRepository>();
+            services.AddTransient<IMCareRegistrationReportRepository, MCareRegistrationReportRepository>();
+            services.AddTransient<IMCarePlanRepository, MCarePlanRepository>();
+            services.AddTransient<IMCareServiceEntryRepository, MCareServiceEntryRepository>();
+            services.AddTransient<IMCarePlanSettingsRepository, MCarePlanSettingsRepository>();
+            services.AddTransient<IMcareRegistrationRepository, McareRegistrationRepository>();
+            services.AddTransient<IMCareDashBoardRepository, MCareDashBoardRepository>();
+            services.AddTransient<ICertificateRepository, CertificateRepository>();
+            services.AddTransient<ILoadDataUpdateRepository, LoadDataUpdateRepository>();
+            services.AddTransient<IOutSourcedWorkRepository, OutSourcedWorkRepository>();
+            services.AddTransient<ITestDriveSettingsRepository, TestDriveSettingsRepository>();
+            services.AddTransient<IVahanDumpUploadRepository, VahanDumpUploadRepository>();
+            services.AddTransient<IServiceIncentiveSettingsReportParameterWiseRepository, ServiceIncentiveSettingsReportParameterWiseRepository>();
+            services.AddTransient<IServiceIncentiveSettingsReportIncentiveRoleWiseRepository, ServiceIncentiveSettingsReportIncentiveRoleWiseRepository>();
+            services.AddTransient<IServiceIncentiveProccesingReportRepository, ServiceIncentiveProccesingReportRepository>();
+            services.AddTransient<IMCareServiceReportRepository, MCareServiceReportRepository>();
+            services.AddTransient<IMcareCancellationRepository, McareCancellationRepository>();
+            services.AddTransient<ISalesSummaryReportRepository, SalesSummaryReportRepository>();
+            services.AddTransient<IServiceFileUploadReconcilationReportRepository, ServiceFileUploadReconcilationReportRepository>();
+            services.AddTransient<IBayPunchingReportRepository, BayPunchingReportRepository>();
+            services.AddTransient<ILabourVsMcareServiceRepository, LabourVsMcareServiceRepository>();
+            services.AddTransient<IEnquiryFollowUpReportRepository, EnquiryFollowUpReportRepository>();
+            services.AddTransient<IOutLetWiseEnquiryReportRepository, OutLetWiseEnquiryReportRepository>();
+            services.AddTransient<ITeamManagerWiseEnquiryStatusReportRepository, TeamManagerWiseEnquiryStatusReportRepository>();
+            services.AddTransient<ISAReconciliationLoadRepository, SAReconciliationLoadRepository>();
+            services.AddTransient<ISAReconciliationLabourRepository, SAReconciliationLabourRepository>();
+            services.AddTransient<IDSEEnquiryReportRepository, DSEEnquiryReportRepository>();
+            services.AddHttpClient<IUploadedFilesReportRepository, UploadedFilesReportRepository>();
+            services.AddTransient<IMCareSummaryReportRepository, MCareSummaryReportRepository>();
+            services.AddTransient<IReceiptRepository, ReceiptRepository>();
+            services.AddTransient<IMcarePerEmployeeRepositroy, McarePerEmployeeRepository>();
+            services.AddTransient<ISalesPerformanceReportRepository, SalesPerformanceReportRepository>();
+            services.AddTransient<IServicePartsRepository, ServicePartsRepository>();
+            services.AddTransient<IMisModelWiseReportRepository, MisModelWiseReportRepository>();
+            services.AddTransient<ISalesPerformanceFYWiseRepository, SalesPerformanceFYWiseRepository>();
+            services.AddTransient<IBranchTargetSettingsRepository, BranchTargetSettingsRepository>();
+            services.AddTransient<ILTCPCInsuranceRepository, LTCPCInsuranceRepository>();
+            services.AddTransient<IModelVsVariantUploadRepository, ModelVsVariantUploadRepository>();
+            services.AddTransient<IServiceIncentiveProcessingLockRepository, ServiceIncentiveProcessingLockRepository>();
+            services.AddTransient<IFinanceUpdateRepository, FinanceUpdateRepository>();
+            services.AddTransient<ISalesRegisterRepository, SalesRegisterRepository>();
+            services.AddTransient<IBookingAndRetailReportRepository, BookingAndRetailReportRepository>();
+            services.AddTransient<IBookingndInventoryLiveStatusRepository, BookingndInventoryLiveStatusRepository>();
+            services.AddTransient<ISalesDumpVsDispatchDumpRepository, SalesDumpVsDispatchDumpRepository>();
+            services.AddTransient<IRetailCancellationReportRepository, RetailCancellationReportRepository>();
+            services.AddTransient<IBookingCancellationReportRepository, BookingCancellationReportRepository>();
+            services.AddTransient<IAccessoriesInvoiceDetailsUpdateRepository, AccessoriesInvoiceDetailsUpdateRepository>();
+            services.AddTransient<IMisSalesDashboardRepository, MisSalesDashboardRepository>();
+            services.AddTransient<IVehiclesDeliveryRepository, VehiclesDeliveryRepository>();
+            services.AddTransient<IGeneralSettingsRepository, GeneralSettingsRepository>();
+            services.AddTransient<IAccessoriesItemRepository, AccessoriesItemRepository>();
+            services.AddTransient<IDataValidationAlertsRepository, DataValidationAlertsRepository>();
+            services.AddTransient<IRetailInvoiceExpenseAllocateRepository, RetailInvoiceExpenseAllocateRepository>();
+            services.AddTransient<IVehicleDeliveryReportRepository, VehicleDeliveryReportRepository>();
+            services.AddTransient<IShowroomRentRepository, ShowroomRentRepository>();
+            services.AddTransient<ITVSDetailsRepository, TVSDetailsRepository>();
+            services.AddTransient<IMCareCustomerDetailsRepository, MCareCustomerDetailsRepository>();
+            #endregion
+
+
+            #region Mobile
+            services.AddTransient<IColdCallEnqiureDetailsRepository, ColdCallEnquireDetailsRepository>();
+            services.AddTransient<ILeadFollowUpRepository, LeadFollowUpRepository>();
+            services.AddHttpClient<IGatePassRepository, GatePassRepository>();
+            services.AddTransient<IUserRoleDashboardRepository, UserRoleDashboardRepository>();
+            services.AddTransient<IMobileServiceTechnicianRepository, MobileServiceTechnicianRepository>();
+            services.AddTransient<IMobilePendingJobsRepository, MobilePendingJobsRepository>();
+            services.AddTransient<IMobileServiceTechDashRepository, MobileServiceTechDashRepository>();
+            services.AddTransient<IMobileServiceAdvisorRepository, MobileServiceAdvisorRepository>();
+            services.AddTransient<IDriverRepository, DriverRepository>();
+            services.AddTransient<ITechnicianInOutSaveRepository, TechnicianInOutSaveRepository>();
+            services.AddTransient<IWorkShopManagerTitleRepository, WorkShopManagerTitleRepository>();
+            services.AddTransient<IWorkshopManagerBayOccupencyRepository, WorkshopManagerBayOccupencyRepository>();
+            services.AddTransient<IWorkShopManagerJobStatusRepository, WorkShopManagerJobStatusRepository>();
+            services.AddHttpClient<IInvoiceDetailsAIRepository, InvoiceDetailsAIRepository>();
+            services.AddTransient<IFinalTechnicionRepository, FinalTechnicionRepository>();
+            services.AddTransient<IMobileWorkshopManagerRepository, MobileWorkshopManagerRepository>();
+            services.AddTransient<IMobileAppSettingsRepository, MobileAppSettingsRepository>();
+            services.AddTransient<IMobileSalesDashboardRepository, MobileSalesDashboardRepository>();
+            #endregion
+
+
+
+
+        }
+    }
+}

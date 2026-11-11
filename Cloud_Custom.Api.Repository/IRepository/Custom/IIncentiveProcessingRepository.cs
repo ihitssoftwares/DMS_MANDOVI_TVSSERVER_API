@@ -1,0 +1,20 @@
+﻿using Cloud_Custom.Api.Shared.Custom;
+using Cloud_Custom.Api.Shared.General;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cloud_Custom.Api.Repository.IRepository.Custom
+{
+    public interface IIncentiveProcessingRepository
+    {
+        Task<IncentiveProcessing> GetList(UserBase user, int Month, int Delearship, int Designation, int Incentive);
+        Task<ResponseEntity> EmployeeWiseUpdate(UserBase user, IncentiveProcessing model);
+        Task<ResponseEntity> Process(UserBase user, int Month, int Delearship, int Designation, int Incentive);
+
+        Task<ResponseEntity> Validate(UserBase user, int Month, int Delearship, int Designation, int Incentive);
+
+        Task<IncentiveProcessing> GetEmployeeDetails(UserBase user, int HDCode, int EmployeeCode);
+    }
+}
