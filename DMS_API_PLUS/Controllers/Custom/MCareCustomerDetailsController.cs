@@ -23,7 +23,6 @@ namespace TVS_API_PLUS.Controllers.Custom
             _mcare = mcare;
             _logger = logger;
         }
-
         [HttpGet("List")]
         public async Task<IActionResult> List(string RegNo, CancellationToken ct)
         {
@@ -32,13 +31,16 @@ namespace TVS_API_PLUS.Controllers.Custom
 
             try
             {
-                // Forwarded to the Mandovi API over HTTPS, not the database
                 var json = await _mcare.GetCustomerListAsync(RegNo.Trim(), ct);
+
+                var data = JsonConvert.DeserializeObject<MCareCustomerDetails>(json);
+                if (data?.List == null || data.List.Count == 0)
+                    return NotFound(new { message = "This vehicle has no MCare." });
+
                 return Content(json, "application/json");
             }
             catch (HttpRequestException ex)
             {
-                // The detail goes to the Output window, not to the caller
                 _logger.LogError(ex, "Call to the Mandovi API failed.");
                 return StatusCode(502, new { error = "Customer details are temporarily unavailable." });
             }
